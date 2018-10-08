@@ -8,7 +8,6 @@
   },
   "keywords": [
     "api",
-    "react",
     "restaurant",
     "koa",
     "leco"
@@ -19,7 +18,6 @@
     "dotenv": "^6.0.0",
     "kcors": "^2.2.2",
     "koa": "^2.5.3",
-    "koa-ajv": "^0.1.1",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.11"
   },
