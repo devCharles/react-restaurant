@@ -16,6 +16,8 @@ router.get('/', async (ctx, next) => {
 })
 
 require('./routes/orders')(router)
+require('./routes/dishes')(router)
+require('./routes/tables')(router)
 
 if (environment === 'production') {
   console.log('Initializing helmet...')

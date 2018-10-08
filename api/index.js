@@ -6,6 +6,6 @@ const port = process.env.PORT || 8081
 server.listen(port, function () {
   console.log(`Server run: http://localhost:${port}`)
   db.connect()
-    .then(() => console.warn('< MONGO CONNECTED >'))
-    .catch(error => console.error('ERROR CONN: ', error))
+    .then(() => console.log('< MONGO CONNECTED >'))
+    .catch(error => console.log('ERROR CONN: ', error))
 })

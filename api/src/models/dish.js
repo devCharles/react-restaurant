@@ -5,12 +5,6 @@ const { dishesTypes } = require('./constants/enums')
 const { Schema } = mongoose
 
 const dishSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    index: true,
-    unique: true,
-    required: true
-  },
   name: {
     type: String,
     required: true,
@@ -32,7 +26,9 @@ const dishSchema = new Schema({
   }
 })
 
+const model = mongoose.model('Dish', dishSchema)
+
 module.exports = {
-  model: mongoose.model('Dish', dishSchema),
+  model,
   schema: dishSchema
 }

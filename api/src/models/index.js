@@ -1,10 +1,10 @@
 
-const dish = require('./dish').model
-const order = require('./order').model
-const table = require('./table').model
+const Dish = require('./dish')
+const Order = require('./order')
+const Table = require('./table')
 
 module.exports = {
-  dish,
-  order,
-  table
+  Dish,
+  Order,
+  Table
 }

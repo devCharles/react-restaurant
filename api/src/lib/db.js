@@ -14,7 +14,6 @@ const connect = () => new Promise((resolve, reject) => {
     return reject(error)
   })
   db.once('open', () => {
-    console.warn('<< DB CONNECTED SUCCESSFULLY >>')
     return resolve(mongoose)
   })
 })

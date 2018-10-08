@@ -4,12 +4,6 @@ const { Schema } = mongoose
 const { schema: tableSchema } = require('./table')
 
 const orderSchema = new Schema({
-  _id: {
-    type: Schema.Types.ObjectId,
-    index: true,
-    unique: true,
-    required: true
-  },
   tableId: {
     type: Schema.Types.ObjectId,
     required: true
@@ -19,6 +13,6 @@ const orderSchema = new Schema({
 })
 
 module.exports = {
-  model: mongoose.model('Dish', orderSchema),
+  model: mongoose.model('Order', orderSchema),
   schema: orderSchema
 }
