@@ -25,6 +25,14 @@ Then we have to create a .env file
 touch .env
 ```
 
+and put these entries on it
+```
+PORT=8080
+DB_USER=''
+DB_PASSWORD=''
+
+```
+
 Now we can install all the nescesary packages:
 ```
 npm i
