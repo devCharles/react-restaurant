@@ -14,21 +14,29 @@ A restaurant system written in javaScript
     - MongoDB
     - Mongoose
 
-## setup instructions
+## setup instructions (API)
+First al all we have to clone this repo and cd in to the API project
+```
+git clone https://github.com/devCharles/react-restaurant && cd react-restaurant/api
+```
 
-Install all the nescesary packages:
+Then we have to create a .env file
+```
+touch .env
+```
+
+Now we can install all the nescesary packages:
 ```
 npm i
 ```
 
-Give execution permissons to the init script
+To set up the server with a deamon:
 ```
-chmod +x init.sh
-```
-
-Execute init script
-```
-./init.sh
+npm run dev
 ```
 
-Now you can go to http://localhost:5000 and see the react-restaurant system working
+or just
+```
+npm start 
+```
+to run the index file, so taht we can se the API is running in the port 8080 in localhost
