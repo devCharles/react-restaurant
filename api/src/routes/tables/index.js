@@ -18,7 +18,6 @@ module.exports = router => {
   })
 
   router.post('/table', async ctx => {
-    console.warn('body: ', ctx.request.body)
     const requestData = get(ctx, 'request.body', {})
     const newTableData = utils.removeExtraData(requestData, tableFields)
     const newTable = new Table(newTableData)
@@ -26,12 +25,11 @@ module.exports = router => {
     const error = newTable.validateSync()
     if (error) throw ctx.throw(400, error.message)
 
-    const alreadyExists = await Table.find({ ...newTableData }).exec()
+    const equalTables = await Table.find({ ...newTableData }).exec()
 
-    if (alreadyExists) throw ctx.throw(400, 'This table already exists')
+    if (equalTables.length > 0) throw ctx.throw(400, 'This table already exists')
     const tableCreated = await newTable.save()
 
-    console.warn('dish created: ', tableCreated)
     ctx.resolve({ payload: { table: tableCreated } })
   })
 }

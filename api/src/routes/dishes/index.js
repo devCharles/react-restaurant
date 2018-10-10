@@ -18,7 +18,6 @@ module.exports = router => {
   })
 
   router.post('/dishes', async ctx => {
-    console.warn('body: ', ctx.request.body)
     const requestData = get(ctx, 'request.body', {})
     const newDishData = utils.removeExtraData(requestData, dishFields)
     const newDish = new Dish(newDishData)
@@ -26,12 +25,11 @@ module.exports = router => {
     const error = newDish.validateSync()
     if (error) throw ctx.throw(400, error.message)
 
-    const alreadyExists = await Dish.find({ ...newDishData }).exec()
+    const equalDishes = await Dish.find({ ...newDishData }).exec()
 
-    if (alreadyExists) throw ctx.throw(400, 'This dish already exists')
+    if (equalDishes.length > 0) throw ctx.throw(400, 'This dish already exists')
     const dishCreated = await newDish.save()
 
-    console.warn('dish created: ', dishCreated)
     ctx.resolve({ payload: { dish: dishCreated } })
   })
 }

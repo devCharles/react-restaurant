@@ -17,7 +17,6 @@ module.exports = router => {
   })
 
   router.post('/order', async ctx => {
-    console.warn('body: ', ctx.request.body)
     const requestData = get(ctx, 'request.body', {})
     const newOrderData = utils.removeExtraData(requestData, orderFields)
     const newOrder = new Order(newOrderData)
@@ -27,7 +26,6 @@ module.exports = router => {
 
     const orderCreated = await newOrder.save()
 
-    console.warn('dish created: ', orderCreated)
     ctx.resolve({ payload: { order: orderCreated } })
   })
 }
