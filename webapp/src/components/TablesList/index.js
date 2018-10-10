@@ -23,9 +23,9 @@ const tables = [
 class TableList extends Component {
   render () {
     return (
-      <section>
+      <section className='container'>
         {/* TODO: list tables here */}
-        <div className='columns is-multiline is-centered'>
+        <div className='columns is-multiline is-centered '>
           { tables.map(table => (
             <div className={styles('column', 'is-2-mobile', 'box', 'table')} >
               <header className={styles('table-header')}>
