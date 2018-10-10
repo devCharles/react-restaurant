@@ -1,0 +1,6 @@
+
+.background {
+  background-color: var(--primary);
+  color: white;
+  overflow: hidden;
+}
