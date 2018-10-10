@@ -19,7 +19,7 @@ class Login extends Component {
   }
   hanldeSumbit () {
     const { user, password } = this.state
-    if (user && password) return this.props.history.push('/admin')
+    if (user && password) return this.props.history.push('/restaurant')
     this.setState({ showError: true })
   }
 
@@ -36,9 +36,9 @@ class Login extends Component {
           <nav className='navbar'>
             <div className='container'>
               <div className='navbar-brand'>
-                <a className='navbar-item'>
+                <a className={styles('navbar-item', 'logo')}>
                   <FontAwesomeIcon icon={['fab', 'react']} size='3x' />
-                  React-restaurant
+                  Restaurant
                 </a>
               </div>
               <div id='navbarMenuHeroA' className='navbar-menu'>

@@ -4,3 +4,12 @@
   color: white;
   overflow: hidden;
 }
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 0;
+  color: var(--blue);
+}

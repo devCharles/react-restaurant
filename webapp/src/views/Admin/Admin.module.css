@@ -1,0 +1,22 @@
+.layout {
+  display: grid;
+  grid-template-columns: 120px auto;
+  grid-template-rows: 100vh;
+  background-color: #E0E1E0
+}
+
+.content {
+  display: grid;
+  grid-template-rows: 50px auto;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--primary-light);
+  padding: 0 1rem;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.5rem;
+}

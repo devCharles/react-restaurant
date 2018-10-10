@@ -1,0 +1,31 @@
+.nav {
+  background-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: .5rem 0;
+  color: var(--blue);
+}
+
+.logo-text {
+  text-align: center;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+  color: #E0E1E0;
+}
+
+.item:hover {
+  color: var(--blue);
+}

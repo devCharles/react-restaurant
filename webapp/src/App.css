@@ -1,5 +1,7 @@
 :root {
-  --primary: #282933
+  --primary: #282933;
+  --blue: #34D9FE;
+  --primary-light: #50515c;
 }
 
 html, body, body > * {
