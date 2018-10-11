@@ -23,14 +23,12 @@ class Admin extends Component {
             </span>
             <FontAwesomeIcon icon={['fas', 'user-circle']} />
           </header>
-          <article>
-            <Switch>
-              <Route exact path='/restaurant/tables-list' component={TableList} />
-              <Route exact path='/restaurant/new-order' component={() => (<p> new order! </p>)}/>
-              <Route exact path='/restaurant/orders-list' component={() => (<p> orders list! </p>)}/>
-              <Route component={() => (<p> NOT FOUND! </p>)} />
-            </Switch>
-          </article>
+          <Switch>
+            <Route exact path='/restaurant/tables-list' component={TableList} />
+            <Route exact path='/restaurant/new-order' component={() => (<p> new order! </p>)}/>
+            <Route exact path='/restaurant/orders-list' component={() => (<p> orders list! </p>)}/>
+            <Route component={() => (<p> NOT FOUND! </p>)} />
+          </Switch>
         </section>
       </div>
     )

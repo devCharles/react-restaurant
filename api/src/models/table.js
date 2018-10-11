@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const tableSchema = new Schema({
   name: String,
-  capacity: Number,
+  custommersNumber: Number,
   isTaken: Boolean
 })
 

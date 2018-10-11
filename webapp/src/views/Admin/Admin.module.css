@@ -8,8 +8,9 @@
 .content {
   display: grid;
   grid-template-rows: 50px auto;
+  grid-template-columns: auto;
 }
-
+ 
 .header {
   display: flex;
   align-items: center;
