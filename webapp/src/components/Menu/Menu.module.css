@@ -5,11 +5,11 @@
 }
 
 .logo {
+  height: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: .5rem 0 1rem 0;
   color: var(--blue);
 }
 

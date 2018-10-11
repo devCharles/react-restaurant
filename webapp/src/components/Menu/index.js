@@ -28,7 +28,6 @@ class Menu extends Component {
       <nav className={styles('nav')}>
         <div className={styles('logo')}>
           <FontAwesomeIcon icon={['fab', 'react']} size='2x' />
-          <span className={styles('logo-text')}>Restaurant</span>
         </div>
         {options.map((item) => (
           <div
