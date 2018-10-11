@@ -1,7 +1,8 @@
 :root {
   --primary: #232323;
-  --blue: #34D9FE;
-  --primary-light: #50515c;
+  --secondaty: #2C2A33;
+  --accent: #00C680;
+  --background: #363440;
 }
 
 html, body, body > * {

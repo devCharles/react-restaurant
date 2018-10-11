@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 120px auto;
   grid-template-rows: 100vh;
-  background-color: #E0E1E0
+  background-color: var(--background);
 }
 
 .content {
@@ -15,9 +15,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: white;
+  background-color: var(--secondary);
   padding: 0 1rem;
-  color: white;
+  color: var(--accent);
   font-weight: bolder;
   font-size: 1.5rem;
+  border-bottom: 1px solid var(--primary);
+  box-shadow: 100px;
 }

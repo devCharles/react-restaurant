@@ -18,7 +18,7 @@ class Admin extends Component {
         <Menu />
         <section className={styles('content')}>
           <header className={styles('header')}>
-            <span>  </span>
+            <span> Restaurant </span>
             <FontAwesomeIcon icon={['fas', 'user-circle']} />
           </header>
           <Switch>

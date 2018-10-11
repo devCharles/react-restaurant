@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: var(--blue);
+  color: var(--accent);
 }
 
 .logo-text {
@@ -27,10 +27,10 @@
 }
 
 .item:hover {
-  color: var(--blue);
-  border-left: 1px solid var(--blue);
+  color: var(--accent);
+  border-left: 1px solid var(--accent);
 }
 
 .selected {
-  border-left: 1px solid var(--blue);
+  border-left: 1px solid var(--accent);
 }

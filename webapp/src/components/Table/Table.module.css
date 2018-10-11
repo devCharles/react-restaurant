@@ -1,5 +1,7 @@
 
 .table {
+  background-color: var(--primary);
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -8,9 +10,9 @@
 }
 
 .table:hover {
-  transform: scale(1.05, 1.05);
-  border: 1px solid var(--blue);
-  border-color: var(--blue);
+  transform: scale(1.04, 1.04);
+  transition: 250ms;
+  border: 1px solid var(--accent);
 }
 
 .header {
