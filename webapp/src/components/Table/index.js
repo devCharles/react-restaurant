@@ -8,9 +8,12 @@ const styles = classNames.bind(styleModule)
 
 class Table extends Component {
   render () {
-    const { table } = this.props
+    const { table, ...props } = this.props
     return (
-      <div className={styles('column', 'is-one-quarter')} >
+      <div 
+        className={styles('column', 'is-one-quarter')}
+        {...props}
+      >
         <div className={styles('box', 'table')}>
           <header className={styles('header')}>
             {table.name}
