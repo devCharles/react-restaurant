@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import TableList from '../../components/TablesList'
@@ -18,15 +18,14 @@ class Admin extends Component {
         <Menu />
         <section className={styles('content')}>
           <header className={styles('header')}>
-            <span>
-              ¡Tomemos la orden!
-            </span>
+            <span> ¡Tomemos la orden! </span>
             <FontAwesomeIcon icon={['fas', 'user-circle']} />
           </header>
           <Switch>
-            <Route exact path='/restaurant/tables-list' component={TableList} />
-            <Route exact path='/restaurant/new-order' component={() => (<p> new order! </p>)}/>
-            <Route exact path='/restaurant/orders-list' component={() => (<p> orders list! </p>)}/>
+            <Redirect exact from='/restaurant' to='/restaurant/tables' />
+            <Route exact path='/restaurant/tables' component={TableList} />
+            <Route exact path='/restaurant/add-table' component={() => (<p> new table! </p>)}/>
+            <Route exact path='/restaurant/add-dishes' component={() => (<p> new dish! </p>)}/>
             <Route component={() => (<p> NOT FOUND! </p>)} />
           </Switch>
         </section>

@@ -9,7 +9,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: .5rem 0;
+  padding: .5rem 0 1rem 0;
   color: var(--blue);
 }
 
@@ -28,4 +28,9 @@
 
 .item:hover {
   color: var(--blue);
+  border-left: 1px solid var(--blue);
+}
+
+.selected {
+  border-left: 1px solid var(--blue);
 }

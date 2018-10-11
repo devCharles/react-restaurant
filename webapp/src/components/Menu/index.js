@@ -11,6 +11,18 @@ import options from './MenuOptions'
 const styles = classNames.bind(styleModule)
 
 class Menu extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      itemSelected: 1
+    }
+  }
+
+  onSelect (menuitem) {
+    this.setState({ itemSelected: menuitem.id })
+    this.props.history.push(menuitem.route)
+  }
+
   render () {
     return (
       <nav className={styles('nav')}>
@@ -20,14 +32,13 @@ class Menu extends Component {
         </div>
         {options.map((item) => (
           <div
-            className={styles('item')}
-            onClick={() => this.props.history.push(item.route)}
+            className={styles('item', { selected: this.state.itemSelected === item.id })}
+            onClick={this.onSelect.bind(this, item)}
           >
             <FontAwesomeIcon icon={item.icon} size='1x' />
             <span>{item.text}</span>
           </div>
-        ))
-        }
+        ))}
       </nav>
     )
   }
