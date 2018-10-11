@@ -15,7 +15,10 @@ This API is published in http://restaurant-api.devcharles.com so, feel free to u
 
 ## installation
 
--- Write installation step here --
+To start the dev server please run the following command in the api folder
+```
+npm i && npm run dev
+```
 
 ---
 ## extra information
