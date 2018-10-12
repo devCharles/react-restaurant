@@ -11,12 +11,12 @@ const orderFields = [
 ]
 
 module.exports = router => {
-  router.get('/order', async ctx => {
+  router.get('/orders', async ctx => {
     const data = await Order.find({}).exec()
-    ctx.resolve({ payload: { order: data } })
+    return ctx.resolve({ payload: { order: data } })
   })
 
-  router.post('/order', async ctx => {
+  router.post('/orders', async ctx => {
     const requestData = get(ctx, 'request.body', {})
     const newOrderData = utils.removeExtraData(requestData, orderFields)
     const newOrder = new Order(newOrderData)
@@ -26,6 +26,6 @@ module.exports = router => {
 
     const orderCreated = await newOrder.save()
 
-    ctx.resolve({ payload: { order: orderCreated } })
+    return ctx.resolve({ payload: { order: orderCreated } })
   })
 }

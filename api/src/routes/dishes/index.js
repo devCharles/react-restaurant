@@ -14,7 +14,7 @@ const dishFields = [
 module.exports = router => {
   router.get('/dishes', async ctx => {
     const data = await Dish.find({}).exec()
-    ctx.resolve({ payload: { dishes: data } })
+    return ctx.resolve({ payload: { dishes: data } })
   })
 
   router.post('/dishes', async ctx => {
@@ -30,6 +30,6 @@ module.exports = router => {
     if (equalDishes.length > 0) throw ctx.throw(400, 'This dish already exists')
     const dishCreated = await newDish.save()
 
-    ctx.resolve({ payload: { dish: dishCreated } })
+    return ctx.resolve({ payload: { dish: dishCreated } })
   })
 }

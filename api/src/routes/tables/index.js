@@ -6,18 +6,17 @@ const utils = require('../../lib/utils/index')
 
 const tableFields = [
   'name',
-  'price',
-  'description',
-  'type'
+  'customersNumber',
+  'isTaken'
 ]
 
 module.exports = router => {
-  router.get('/table', async ctx => {
+  router.get('/tables', async ctx => {
     const data = await Table.find({}).exec()
-    ctx.resolve({ payload: { table: data } })
+    return ctx.resolve({ payload: { table: data } })
   })
 
-  router.post('/table', async ctx => {
+  router.post('/tables', async ctx => {
     const requestData = get(ctx, 'request.body', {})
     const newTableData = utils.removeExtraData(requestData, tableFields)
     const newTable = new Table(newTableData)
@@ -30,6 +29,6 @@ module.exports = router => {
     if (equalTables.length > 0) throw ctx.throw(400, 'This table already exists')
     const tableCreated = await newTable.save()
 
-    ctx.resolve({ payload: { table: tableCreated } })
+    return ctx.resolve({ payload: { table: tableCreated } })
   })
 }

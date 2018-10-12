@@ -16,7 +16,11 @@ const dishSchema = new Schema({
     required: true,
     default: 0
   },
-  description: String,
+  description: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   type: {
     type: String,
     enum: dishesTypes,

@@ -9,7 +9,12 @@ const orderSchema = new Schema({
     required: true
   },
   dishes: [tableSchema],
-  description: String
+  description: {
+    type: String,
+    trim: true,
+    required: true,
+    default: ''
+  }
 })
 
 module.exports = {
