@@ -27,6 +27,14 @@
   padding: 1rem 0;
 }
 
+.footer {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .taken {
   color: yellow;
 }

@@ -12,6 +12,7 @@ class Table extends Component {
     return (
       <div 
         className={styles('column', 'is-one-quarter')}
+        title={!table.isTaken ? 'Asignar comezales' : 'Levantar orden'}
         {...props}
       >
         <div className={styles('box', 'table')}>
@@ -29,11 +30,16 @@ class Table extends Component {
               <FontAwesomeIcon icon={['fas', 'clock']} />
             }
           </article>
-          <footer>
+          <footer className={styles('footer')}>
+            <div>
+              <FontAwesomeIcon
+                icon={['fas', 'circle']}
+                className={styles({ 'taken': table.isTaken }, { 'available': !table.isTaken })} />
+              <span> { table.isTaken ? 'Ocupada' : 'Disponible' } </span>
+            </div>
             <FontAwesomeIcon
-              icon={['fas', 'circle']}
-              className={styles({ 'taken': table.isTaken }, { 'available': !table.isTaken })} />
-            <span> { table.isTaken ? 'Ocupada' : 'Disponible' } </span>
+              icon={table.isTaken ? ['fas', 'plus-circle'] : ['fas', 'user-plus']} 
+            />
           </footer>
         </div>
       </div>
