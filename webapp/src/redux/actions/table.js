@@ -21,4 +21,9 @@ export const getTables = () => async dispatch => {
   return dispatch(actions.getAllTables(allTables))
 }
 
+export const createTable = (tableName) => async dispatch => {
+  const tableCreated = await table.create(tableName)
+  return tableCreated
+}
+
 export default actions

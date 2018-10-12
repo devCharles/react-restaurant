@@ -11,9 +11,20 @@ class AddTable extends Component {
 
   render () {
     return (
-      <section className='columns is-centered has-text-centered'>
-        <div className='column '>
-          rew
+      <section className='container'>
+        <div className='columns is-centered has-text-centered'>
+        <div className='column is-half is-full-mobile'>
+          <form>
+            <div className='columns is-multiline'>
+              <div className='column is-full'>
+                <span> Nombre de la mesa: </span>
+              </div>
+              <div className='column is-full'>
+                <input type='text' className='input' />
+              </div>
+            </div>
+          </form>
+        </div>
         </div>
       </section>
     )

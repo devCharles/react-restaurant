@@ -7,10 +7,22 @@ const getAll = async () => {
   const response = await apiFetch('/tables')
   const data = response.ok ? await response.json() : {}
   const tables = get(data, 'payload.table', [])
-  console.warn('>> data fetched: ', tables)
   return tables
 }
 
+const create = async (tableName) => {
+  const response = await apiFetch('/tables', {
+    method: 'POST',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({ name: tableName })
+  })
+  if (response.ok) return true
+  return false
+}
+
 export default {
-  getAll
+  getAll,
+  create
 }

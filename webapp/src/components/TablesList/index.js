@@ -3,7 +3,7 @@ import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getTables } from '../../redux/actions/table'
+import { getTables, createTable } from '../../redux/actions/table'
 import uiActions from '../../redux/actions/ui'
 
 import Table from '../Table'
@@ -40,7 +40,7 @@ class TableList extends Component {
   }
 
   render () {
-    const { tables } = this.props
+    const { tables, createTable, getTables } = this.props
     return (
       <section className={styles('tables-container')}>
         <div className={styles('columns', 'is-multiline', 'tables-columns')}>
@@ -51,6 +51,12 @@ class TableList extends Component {
               onClick={this.onSelectTable.bind(this, table._id)}
             />
           ))}
+          <Table
+            isAdd
+            table={{ name: 'Agregar' }}
+            creator={createTable}
+            onCreated={getTables}
+          />
         </div>
       </section>
     )
@@ -66,7 +72,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     getTables: bindActionCreators(getTables, dispatch),
-    setSectionName: bindActionCreators(uiActions.setSectionName, dispatch)
+    setSectionName: bindActionCreators(uiActions.setSectionName, dispatch),
+    createTable: bindActionCreators(createTable, dispatch)
   }
 }
 
