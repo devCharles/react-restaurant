@@ -6,12 +6,6 @@ export default [
     icon: ['fas', 'table']
   },
   {
-    id: 2,
-    text: 'Agregar mesa',
-    route: '/restaurant/add-table',
-    icon: ['fas', 'plus-circle']
-  },
-  {
     id: 3,
     text: 'Agregar platillo',
     route: '/restaurant/add-dishes',

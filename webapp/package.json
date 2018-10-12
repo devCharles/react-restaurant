@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "upload": "aws s3 sync ./build s3://restaurant.devcharles.com/ --delete --acl public-read",
+    "upload": "npm run build && aws s3 sync ./build s3://restaurant.devcharles.com/ --delete --acl public-read",
     "invalidate-cache": "aws cloudfront create-invalidation --distribution-id E3VIKO3LA6TN4Z --paths '/*'",
     "deploy": "npm run upload && npm run invalidate-cache && echo '<< WEBAPP UPLOADED >>'"
   },
