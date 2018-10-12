@@ -23,13 +23,15 @@ class Admin extends Component {
             <span> Restaurant </span>
             <FontAwesomeIcon icon={['fas', 'user-circle']} />
           </header>
-          <Switch>
-            <Redirect exact from='/restaurant' to='/restaurant/tables' />
-            <Route exact path='/restaurant/tables' component={TableList} />
-            <Route exact path='/restaurant/add-table' component={AddTAble} />
-            <Route exact path='/restaurant/add-dishes' component={() => (<p> new dish! </p>)}/>
-            <Route component={() => (<p> NOT FOUND! </p>)} />
-          </Switch>
+          <main className={styles('main')} >
+            <Switch>
+              <Redirect exact from='/restaurant' to='/restaurant/tables' />
+              <Route exact path='/restaurant/tables' component={TableList} />
+              <Route exact path='/restaurant/add-table' component={AddTAble} />
+              <Route exact path='/restaurant/add-dishes' component={() => (<p> new dish! </p>)}/>
+              <Route component={() => (<p> NOT FOUND! </p>)} />
+            </Switch>
+          </main>
         </section>
       </div>
     )

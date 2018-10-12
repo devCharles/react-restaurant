@@ -35,6 +35,10 @@
   justify-content: space-between;
 }
 
+.table:hover .action {
+  color: var(--accent)
+}
+
 .taken {
   color: yellow;
 }

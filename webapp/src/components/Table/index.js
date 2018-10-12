@@ -38,7 +38,8 @@ class Table extends Component {
               <span> { table.isTaken ? 'Ocupada' : 'Disponible' } </span>
             </div>
             <FontAwesomeIcon
-              icon={table.isTaken ? ['fas', 'plus-circle'] : ['fas', 'user-plus']} 
+              className={styles('action')}
+              icon={table.isTaken ? ['fas', 'plus-circle'] : ['fas', 'user-plus']}
             />
           </footer>
         </div>

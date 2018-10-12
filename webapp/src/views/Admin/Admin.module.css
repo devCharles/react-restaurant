@@ -10,6 +10,10 @@
   grid-template-rows: 50px auto;
   grid-template-columns: auto;
 }
+
+.main {
+  overflow-y: auto;
+}
  
 .header {
   display: flex;
