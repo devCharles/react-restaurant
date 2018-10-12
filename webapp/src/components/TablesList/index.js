@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import { getTables } from '../../redux/actions/table'
+import uiActions from '../../redux/actions/ui'
 
 import Table from '../Table'
 import styleModule from './TablesList.module.css'
@@ -21,6 +22,7 @@ class TableList extends Component {
 
   componentDidMount () {
     this.props.getTables()
+    this.props.setSectionName('Mesas')
   }
 
   onSelectTable (tableName) {
@@ -40,7 +42,7 @@ class TableList extends Component {
   render () {
     const { tables } = this.props
     return (
-      <section className={styles('', 'tables-container')}>
+      <section className={styles('tables-container')}>
         <div className={styles('columns', 'is-multiline', 'tables-columns')}>
           {tables.map(table => (
             <Table
@@ -63,7 +65,8 @@ function mapStateToProps (state) {
 
 function mapDispatchToProps (dispatch) {
   return {
-    getTables: bindActionCreators(getTables, dispatch)
+    getTables: bindActionCreators(getTables, dispatch),
+    setSectionName: bindActionCreators(uiActions.setSectionName, dispatch)
   }
 }
 

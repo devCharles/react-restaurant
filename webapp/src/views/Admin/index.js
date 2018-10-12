@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { connect } from 'react-redux'
 
 import styleModule from './Admin.module.css'
 
@@ -20,7 +21,7 @@ class Admin extends Component {
         <Menu />
         <section className={styles('content')}>
           <header className={styles('header')}>
-            <span> Restaurant </span>
+            <span> { this.props.sectionName } </span>
             <FontAwesomeIcon icon={['fas', 'user-circle']} />
           </header>
           <main className={styles('main')} >
@@ -38,4 +39,10 @@ class Admin extends Component {
   }
 }
 
-export default Admin
+function mapStateToProps (state) {
+  return {
+    sectionName: state.ui.sectionName
+  }
+}
+
+export default connect(mapStateToProps)(Admin)
