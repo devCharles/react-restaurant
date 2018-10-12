@@ -33,6 +33,15 @@ class Login extends Component {
         <div className='hero-body'>
           <div className='container'>
             <div className='columns is-centered is-multiline'>
+              { this.state.showError &&
+                <div className='column is-full is-centered'>
+                  <div className='columns is-centered'>
+                    <div className='column notification is-danger has-text-centered is-one-quarter'>
+                      Debes ingresar un nombre de usuario
+                    </div>
+                  </div>
+                </div>
+              }
               <div className='column is-one-third'>
                 <div className='box'>
                   <div className='columns is-centered is-multiline'>

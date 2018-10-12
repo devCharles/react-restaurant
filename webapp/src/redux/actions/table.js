@@ -8,7 +8,7 @@ export const GET_ALL_TABLES = 'GET_ALL_TABLES'
 export const SAVE_TABLE = 'SAVE_TABLE'
 
 /* action creators */
-export default createActions(
+const actions = createActions(
   {
     [SAVE_TABLE]: (id) => ({ id })
   },
@@ -18,6 +18,7 @@ export default createActions(
 
 export const getTables = () => async dispatch => {
   const allTables = await table.getAll()
-  console.warn('>>> ACTION GET TABLES: ', allTables)
-  return allTables
+  return dispatch(actions.getAllTables(allTables))
 }
+
+export default actions

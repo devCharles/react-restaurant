@@ -3,11 +3,8 @@ import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import styleModule from './Admin.module.css'
-import tableActons, { getTables } from '../../redux/actions/table'
 
 import Menu from '../../components/Menu'
 import TableList from '../../components/TablesList'
@@ -15,10 +12,6 @@ import TableList from '../../components/TablesList'
 const styles = classNames.bind(styleModule)
 
 class Admin extends Component {
-  componentDidMount () {
-    this.props.getAllTables()
-  }
-
   render () {
     console.warn('>> props admin', this.props)
     return (
@@ -42,16 +35,4 @@ class Admin extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    tables: state.table
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getAllTables: bindActionCreators(getTables, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default Admin
