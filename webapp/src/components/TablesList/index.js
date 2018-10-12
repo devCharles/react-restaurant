@@ -53,7 +53,7 @@ class TableList extends Component {
           ))}
           <Table
             isAdd
-            table={{ name: 'Agregar' }}
+            table={{ name: 'Nueva mesa' }}
             creator={createTable}
             onCreated={getTables}
           />
