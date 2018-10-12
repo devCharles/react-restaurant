@@ -14,15 +14,17 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.0.4",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "upload": "aws s3 sync . s3://restaurant.devcharles.com/ --delete --acl public-read",
-    "invalidate-cahce": "aws cloudfront create-invalidation --distribution-id E3VIKO3LA6TN4Z --paths '/*'",
+    "upload": "aws s3 sync ./build s3://restaurant.devcharles.com/ --delete --acl public-read",
+    "invalidate-cache": "aws cloudfront create-invalidation --distribution-id E3VIKO3LA6TN4Z --paths '/*'",
     "deploy": "npm run upload && npm run invalidate-cache && echo '<< WEBAPP UPLOADED >>'"
   },
   "eslintConfig": {
@@ -35,6 +37,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "redux-devtools-extension": "^2.13.5",
     "standard": "^12.0.1"
   }
 }

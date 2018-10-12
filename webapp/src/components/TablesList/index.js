@@ -63,6 +63,7 @@ class TableList extends Component {
         <div className={styles('columns', 'is-multiline', 'tables-columns')}>
           {tables.map(table => (
             <Table
+              key={table.id}
               table={table}
               onClick={this.onSelectTable.bind(this, table.id)}
             />

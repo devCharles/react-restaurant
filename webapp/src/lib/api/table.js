@@ -3,7 +3,14 @@ import get from 'lodash/get'
 
 import apiFetch from './fetch'
 
-async function getAll () {
-  const data = await apiFetch('/table')
-  return get(data, 'payload.table', [])
+const getAll = async () => {
+  const response = await apiFetch('/table')
+  const data = response.ok ? await response.json() : {}
+  const tables = get(data, 'payload.table', [])
+  console.warn('>> data fetched: ', tables)
+  return tables
+}
+
+export default {
+  getAll
 }

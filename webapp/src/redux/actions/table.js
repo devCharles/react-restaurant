@@ -1,12 +1,23 @@
 
-/* action types */
+import { createActions } from 'redux-actions'
+
+import table from '../../lib/api/table'
+
+export const GET_TABLE = 'GET_TABLE'
 export const GET_ALL_TABLES = 'GET_ALL_TABLES'
 export const SAVE_TABLE = 'SAVE_TABLE'
-export const GET_TABLE = 'GET_TABLE'
 
 /* action creators */
-export const getAllTables = () => ({ type: GET_ALL_TABLES })
+export default createActions(
+  {
+    [SAVE_TABLE]: (id) => ({ id })
+  },
+  GET_ALL_TABLES,
+  SAVE_TABLE
+)
 
-export const saveTable = (tableData) => ({ type: SAVE_TABLE, payload: tableData })
-
-export const getTable = (tableId) => ({ type: GET_TABLE, payload: tableId })
+export const getTables = () => async dispatch => {
+  const allTables = await table.getAll()
+  console.warn('>>> ACTION GET TABLES: ', allTables)
+  return allTables
+}

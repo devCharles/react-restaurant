@@ -31,6 +31,7 @@ class Menu extends Component {
         </div>
         {options.map((item) => (
           <div
+            key={item.id}
             className={styles('item', { selected: this.state.itemSelected === item.id })}
             onClick={this.onSelect.bind(this, item)}
           >
