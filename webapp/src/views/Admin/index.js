@@ -8,6 +8,7 @@ import styleModule from './Admin.module.css'
 
 import Menu from '../../components/Menu'
 import TableList from '../../components/TablesList'
+import AddTAble from '../../components/AddTable'
 
 const styles = classNames.bind(styleModule)
 
@@ -25,7 +26,7 @@ class Admin extends Component {
           <Switch>
             <Redirect exact from='/restaurant' to='/restaurant/tables' />
             <Route exact path='/restaurant/tables' component={TableList} />
-            <Route exact path='/restaurant/add-table' component={() => (<p> new table! </p>)}/>
+            <Route exact path='/restaurant/add-table' component={AddTAble} />
             <Route exact path='/restaurant/add-dishes' component={() => (<p> new dish! </p>)}/>
             <Route component={() => (<p> NOT FOUND! </p>)} />
           </Switch>
