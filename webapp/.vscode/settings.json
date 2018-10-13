@@ -1,0 +1,7 @@
+{
+  "javascript.validate.enable": false,
+  "standard.autoFixOnSave": true,
+  "files.associations": {
+    "*.js": "javascriptreact"
+  }
+}

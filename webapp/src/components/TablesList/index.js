@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -7,6 +7,8 @@ import { getTables, createTable } from '../../redux/actions/table'
 import uiActions from '../../redux/actions/ui'
 
 import Table from '../Table'
+import Modal from '../Modal'
+
 import styleModule from './TablesList.module.css'
 
 const styles = classNames.bind(styleModule)
@@ -42,23 +44,26 @@ class TableList extends Component {
   render () {
     const { tables, createTable, getTables } = this.props
     return (
-      <section className={styles('tables-container')}>
-        <div className={styles('columns', 'is-multiline', 'tables-columns')}>
-          {tables.map(table => (
+      <>
+        {this.state.showModal && <Modal />}
+        <section className={styles('tables-container')}>
+          <div className={styles('columns', 'is-multiline', 'tables-columns')}>
+            {tables.map(table => (
+              <Table
+                key={table._id}
+                table={table}
+                onClick={this.onSelectTable.bind(this, table._id)}
+              />
+            ))}
             <Table
-              key={table._id}
-              table={table}
-              onClick={this.onSelectTable.bind(this, table._id)}
+              isAdd
+              table={{ name: 'Nueva mesa' }}
+              creator={createTable}
+              onCreated={getTables}
             />
-          ))}
-          <Table
-            isAdd
-            table={{ name: 'Nueva mesa' }}
-            creator={createTable}
-            onCreated={getTables}
-          />
-        </div>
-      </section>
+          </div>
+        </section>
+      </>
     )
   }
 }

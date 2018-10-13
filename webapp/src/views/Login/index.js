@@ -16,7 +16,8 @@ class Login extends Component {
       showError: false
     }
   }
-  hanldeSumbit () {
+  hanldeSumbit (event) {
+    event.preventDefault()
     const { user } = this.state
     if (user) return this.props.history.push('/restaurant')
     this.setState({ showError: true })
@@ -24,65 +25,72 @@ class Login extends Component {
 
   handleInputChange ({ target }) {
     const { value, id } = target
-    this.setState({ [id]: value, showError: false })
+    let stateChanges = { [id]: value }
+    if (value) stateChanges = { ...stateChanges, showError: false }
+    console.warn('new changes: ', stateChanges)
+    this.setState(stateChanges)
   }
 
   render () {
     return (
-      <section className={styles('hero', 'is-fullheight', 'background')}>
-        <div className='hero-body'>
-          <div className='container'>
-            <div className='columns is-centered is-multiline'>
-              { this.state.showError &&
-                <div className='column is-full is-centered'>
-                  <div className='columns is-centered'>
-                    <div className='column notification is-danger has-text-centered is-one-quarter'>
-                      Debes ingresar un nombre de usuario
-                    </div>
-                  </div>
-                </div>
-              }
-              <div className='column is-one-third'>
-                <div className='box'>
-                  <div className='columns is-centered is-multiline'>
-                    <div className='column is-full has-text-centered'>
-                      <FontAwesomeIcon icon={['fas', 'user-circle']} size='4x' />
-                    </div>
-                    <div className='column is-full'>
-                      <input
-                        id='user'
-                        className='input is-medium'
-                        placeholder='Usuario'
-                        onKeyUp={this.handleInputChange.bind(this)}
-                      />
-                      <div className='column is-full is-centered has-text-centered'>
-                        <input
-                          type='submit'
-                          className='button is-black is-outlined'
-                          value='Ingresar'
-                          onClick={this.hanldeSumbit.bind(this)}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className='column is-full has-text-centered'>
-                <a
-                  className='button is-inverted'
-                  href='https://github.com/devCharles/react-restaurant'
-                  target='__balnk'
-                >
-                  <span className='icon'>
-                    <FontAwesomeIcon icon={['fab', 'github']} />
-                  </span>
-                  <span> Source code </span>
-                </a>
+      <>
+        {this.state.showError &&
+          <div className={styles('column', 'is-full is-centered', 'error')}>
+            <div className='columns is-centered'>
+              <div className='column notification is-danger has-text-centered is-one-quarter'>
+                Debes ingresar un nombre de usuario
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        }
+        <section className={styles('hero', 'is-fullheight', 'background')}>
+          <div className='hero-body'>
+            <div className='container'>
+              <div className='columns is-centered is-multiline'>
+                <div className='column is-one-third'>
+                  <div className='box'>
+                    <form>
+                      <div className='columns is-centered is-multiline'>
+                        <div className='column is-full has-text-centered'>
+                          <FontAwesomeIcon icon={['fas', 'user-circle']} size='4x' />
+                        </div>
+                        <div className='column is-full'>
+                          <input
+                            id='user'
+                            className='input is-medium'
+                            placeholder='Usuario'
+                            onChange={this.handleInputChange.bind(this)}
+                          />
+                          <div className='column is-full is-centered has-text-centered'>
+                            <input
+                              type='submit'
+                              className='button is-black is-outlined'
+                              value='Ingresar'
+                              onClick={this.hanldeSumbit.bind(this)}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+                <div className='column is-full has-text-centered'>
+                  <a
+                    className='button is-inverted'
+                    href='https://github.com/devCharles/react-restaurant'
+                    target='__balnk'
+                  >
+                    <span className='icon'>
+                      <FontAwesomeIcon icon={['fab', 'github']} />
+                    </span>
+                    <span> Source code </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
     )
   }
 }
