@@ -41,7 +41,7 @@ class TableList extends Component {
   }
 
   render () {
-    const { tables, createTable, getTables, addCustomers } = this.props
+    const { tables, createTable, getTables, addCustomers: customersAdder } = this.props
     return (
       <section className={styles('tables-container')}>
         <div className={styles('columns', 'is-multiline', 'tables-columns')}>
@@ -49,6 +49,8 @@ class TableList extends Component {
             <Table
               key={table._id}
               table={table}
+              addCustomers={customersAdder}
+              onAddCustomer={getTables}
             />
           ))}
           <Table
@@ -56,8 +58,6 @@ class TableList extends Component {
             table={{ name: 'Nueva mesa' }}
             creator={createTable}
             onCreated={getTables}
-            addCustomers={addCustomers}
-            onAddCustomer={getTables}
           />
         </div>
       </section>

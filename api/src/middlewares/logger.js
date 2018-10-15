@@ -17,7 +17,7 @@ module.exports = async (ctx, next) => {
     const ms = Date.now() - start
     env && console.log(`${ctx.method} ${ctx.url} -> ${ctx.status} - ${ms}ms, query: ${JSON.stringify(ctx.query)}, ${(ctx.method !== 'GET' || ctx.method !== 'DELETE') && `body: ${filterBody(ctx.request.body)},`} at ${(new Date()).toISOString()}`)
   } catch (error) {
-    console.log(`${ctx.method} ${ctx.url}, query: ${JSON.stringify(ctx.query)}, body: ${filterBody(ctx.request.body)}, at ${(new Date()).toISOString()}`)
+    console.log(`${ctx.method} ${ctx.url} -> ${ctx.status}, query: ${JSON.stringify(ctx.query)}, body: ${filterBody(ctx.request.body)}, at ${(new Date()).toISOString()}`)
     console.error(error)
     throw error
   }

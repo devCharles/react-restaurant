@@ -19,7 +19,7 @@ const create = async (tableName) => {
     body: JSON.stringify({ name: tableName })
   })
   if (response.ok) return true
-  return false
+  throw new Error('Table already exists')
 }
 
 const addCustomers = async (tableId, customersNumber = 1) => {
