@@ -22,7 +22,20 @@ const create = async (tableName) => {
   return false
 }
 
+const addCustomers = async (tableId, customersNumber = 1) => {
+  const response = await apiFetch(`/tables/${tableId}`, {
+    method: 'PUT',
+    headers: {
+      'Content-type': 'application/json'
+    },
+    body: JSON.stringify({ customersNumber, isTaken: true })
+  })
+  if (response.ok) return true
+  return false
+}
+
 export default {
   getAll,
-  create
+  create,
+  addCustomers
 }

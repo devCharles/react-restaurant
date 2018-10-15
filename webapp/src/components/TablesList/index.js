@@ -1,13 +1,12 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { getTables, createTable } from '../../redux/actions/table'
+import { getTables, createTable, addCustomers } from '../../redux/actions/table'
 import uiActions from '../../redux/actions/ui'
 
 import Table from '../Table'
-import Modal from '../Modal'
 
 import styleModule from './TablesList.module.css'
 
@@ -42,28 +41,26 @@ class TableList extends Component {
   }
 
   render () {
-    const { tables, createTable, getTables } = this.props
+    const { tables, createTable, getTables, addCustomers } = this.props
     return (
-      <>
-        {this.state.showModal && <Modal />}
-        <section className={styles('tables-container')}>
-          <div className={styles('columns', 'is-multiline', 'tables-columns')}>
-            {tables.map(table => (
-              <Table
-                key={table._id}
-                table={table}
-                onClick={this.onSelectTable.bind(this, table._id)}
-              />
-            ))}
+      <section className={styles('tables-container')}>
+        <div className={styles('columns', 'is-multiline', 'tables-columns')}>
+          {tables.map(table => (
             <Table
-              isAdd
-              table={{ name: 'Nueva mesa' }}
-              creator={createTable}
-              onCreated={getTables}
+              key={table._id}
+              table={table}
             />
-          </div>
-        </section>
-      </>
+          ))}
+          <Table
+            isAdd
+            table={{ name: 'Nueva mesa' }}
+            creator={createTable}
+            onCreated={getTables}
+            addCustomers={addCustomers}
+            onAddCustomer={getTables}
+          />
+        </div>
+      </section>
     )
   }
 }
@@ -78,7 +75,8 @@ function mapDispatchToProps (dispatch) {
   return {
     getTables: bindActionCreators(getTables, dispatch),
     setSectionName: bindActionCreators(uiActions.setSectionName, dispatch),
-    createTable: bindActionCreators(createTable, dispatch)
+    createTable: bindActionCreators(createTable, dispatch),
+    addCustomers: bindActionCreators(addCustomers, dispatch)
   }
 }
 

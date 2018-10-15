@@ -8,7 +8,7 @@ const tableSchema = new Schema({
     required: true,
     trim: true
   },
-  custommersNumber: {
+  customersNumber: {
     type: Number,
     min: 0,
     required: true,

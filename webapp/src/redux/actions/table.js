@@ -16,6 +16,7 @@ const actions = createActions(
   SAVE_TABLE
 )
 
+// thunks
 export const getTables = () => async dispatch => {
   const allTables = await table.getAll()
   return dispatch(actions.getAllTables(allTables))
@@ -24,6 +25,11 @@ export const getTables = () => async dispatch => {
 export const createTable = (tableName) => async dispatch => {
   const tableCreated = await table.create(tableName)
   return tableCreated
+}
+
+export const addCustomers = (tableId, customersNumber) => async dispatch => {
+  const added = await table.addCustomers(tableId, customersNumber)
+  return added
 }
 
 export default actions

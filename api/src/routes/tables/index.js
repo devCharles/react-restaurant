@@ -31,4 +31,18 @@ module.exports = router => {
 
     return ctx.resolve({ payload: { table: tableCreated } })
   })
+
+  router.put('/tables/:tableId', async ctx => {
+    const requestData = get(ctx, 'request.body', {})
+    const { tableId } = get(ctx, 'params', {})
+    console.warn('params: ', ctx.params)
+    console.warn('tableID: ', tableId)
+    const updateData = utils.removeExtraData(requestData, tableFields)
+    console.warn('updateData: ', updateData)
+    const table = await Table.findById(tableId).exec()
+    table.set(updateData)
+    console.warn('table edited: ', table)
+    const tableUpdated = await table.save()
+    return ctx.resolve({ payload: { table: tableUpdated } })
+  })
 }

@@ -6,24 +6,27 @@ import styleModule from './Modal.module.css'
 
 const styles = classNames.bind(styleModule)
 
-class componentName extends Component {
+class Modal extends Component {
   render () {
+    const { title = 'Title', onClose } = this.props
     return (
       <div className={styles('overlay')}>
         <div className='columns is-centered'>
           <div className='column is-one-third'>
             <div className={styles('box')}>
               <header>
-                <div className='columns is-centered'>
+                <div className='columns is-centered is-mobile'>
                   <div className={styles('column', 'is-four-fifth', 'title')}>
-                    'Title'
+                    {title}
                   </div>
-                  <div className='column is-one-fifth '>
+                  <div
+                    className='column is-one-fifth'
+                  >
                     <FontAwesomeIcon
+                      onClick={() => onClose()}
                       className={styles('close', 'is-pulled-right')}
                       icon={['fas', 'times']}
                       size='2x'
-                      onClick={this.props.onClose}
                     />
                   </div>
                 </div>
@@ -39,4 +42,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName
+export default Modal
