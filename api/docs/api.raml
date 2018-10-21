@@ -1,14 +1,16 @@
 #%RAML 0.8
-title: Simple restaurant API
+title: Simple restaurant
 version: 1
 baseUri: http://restaurant-api.devcharles.com
-/:
-  get:
-    description: RestaurantAPI home page
+mediaType: application/json
+documentation:
+  - title: Description
+    content: !include documentation.md
 
-/orders: !include dishes/dishes.raml
+/orders: !include orders/orders.raml
 
-/dishes: !include orders/orders.raml
+/dishes: !include dishes/dishes.raml
+
 
 
 

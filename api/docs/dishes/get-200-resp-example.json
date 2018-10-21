@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "message": "DONE!",
+  "payload": {
+    "dishes": [
+      {
+        "price": 200,
+        "description": "Racion de 200gr de pasta ",
+        "type": "food",
+        "_id": "5bbb8952558e9243baa0d3f1",
+        "name": "Spagheti",
+        "__v": 0
+      },
+      {
+        "price": 60,
+        "description": "Orden de 3 tacos al pastor",
+        "type": "food",
+        "_id": "5bbb89ab7d485943f5312ebe",
+        "name": "Tacos al pastor",
+        "__v": 0
+      },
+      {
+        "price": 0,
+        "description": "",
+        "type": "food",
+        "_id": "5bcbd26bca690f7d8517961f",
+        "name": "pastel",
+        "__v": 0
+      },
+      {
+        "price": 0,
+        "description": "",
+        "type": "food",
+        "_id": "5bcbd9e8b1c2f90a3aa1c181",
+        "name": "Pizza",
+        "__v": 0
+      }
+    ]
+  }
+}

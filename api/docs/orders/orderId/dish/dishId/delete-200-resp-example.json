@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "message": "Dish removed from order 5bcc03d643d97f4e22a83c9e",
+  "payload": {
+    "order": {
+      "_id": "5bcc03d643d97f4e22a83c9e",
+      "dishes": [
+        {
+          "price": 0,
+          "description": "",
+          "type": "food",
+          "_id": "5bcbd26bca690f7d8517961f",
+          "name": "pastel",
+          "__v": 0
+        }
+      ],
+      "__v": 10
+    }
+  }
+}

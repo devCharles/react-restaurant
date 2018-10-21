@@ -1,0 +1,58 @@
+{
+  "success": true,
+  "message": "DONE!",
+  "payload": {
+    "orders": [
+      {
+        "_id": "5bcc023843d97f4e22a83c99",
+        "dishes": [
+          {
+            "price": 60,
+            "description": "Orden de 3 tacos al pastor",
+            "type": "food",
+            "_id": "5bbb89ab7d485943f5312ebe",
+            "name": "Tacos al pastor",
+            "__v": 0
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "5bcc025543d97f4e22a83c9b",
+        "dishes": [
+          {
+            "price": 60,
+            "description": "Orden de 3 tacos al pastor",
+            "type": "food",
+            "_id": "5bbb89ab7d485943f5312ebe",
+            "name": "Tacos al pastor",
+            "__v": 0
+          },
+          {
+            "price": 0,
+            "description": "",
+            "type": "food",
+            "_id": "5bcbd26bca690f7d8517961f",
+            "name": "pastel",
+            "__v": 0
+          }
+        ],
+        "__v": 0
+      },
+      {
+        "_id": "5bcc03d643d97f4e22a83c9e",
+        "dishes": [
+          {
+            "price": 0,
+            "description": "",
+            "type": "food",
+            "_id": "5bcbd26bca690f7d8517961f",
+            "name": "pastel",
+            "__v": 0
+          }
+        ],
+        "__v": 10
+      }
+    ]
+  }
+}

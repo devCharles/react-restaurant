@@ -1,11 +1,48 @@
 get:
-  description: List all existing dishes
+  description: List all the orders
+  responses:
+    200:
+      description: List of orders retrieved successfully
+      body:
+        example: !include get-200-resp-example.json
+
 post:
-  description: Add more dishes
-/{id}:
-  get:
-    description: Get the deatil information of a dish
-  put:
-    description: Update a dish specs
-  delete:
-    description: Delete a dish
+  description: Create a new order
+  body:
+    example: !include post-req-example.json
+  responses:
+    200:
+      description: Order created successfully
+      body:
+        example: !include post-200-resp-example.json
+
+/{orderId}:
+  uriParameters:
+    orderId:
+      type: string
+      description: The order id as it is in mongo
+
+  /dish:
+
+    /{dishId}:
+
+      uriParameters:
+        dishId:
+          type: string
+          description: The dish id as it is in mongo
+
+      patch:
+        description: Add the given dish into the given order
+        responses: 
+          200:
+            description: Dish added successfully
+            body:
+              example: !include orderId/dish/dishId/patch-200-resp-example.json
+
+      delete:
+        description: Remove given dish of the given order
+        responses: 
+          200:
+            description: Dish deleted successfully
+            body:
+              example: !include orderId/dish/dishId/delete-200-resp-example.json

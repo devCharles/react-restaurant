@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "message": "Dish created successfully!",
+  "payload": {
+    "dish": {
+      "price": 100,
+      "description": "Pizza receta tradicional de 8 rebanadas",
+      "type": "food",
+      "_id": "5bcbd9e8b1c2f90a3aa1c181",
+      "name": "Pizza",
+      "__v": 0
+    }
+  }
+}
