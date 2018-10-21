@@ -3,10 +3,7 @@ import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
-import { getDishes } from '../../redux/actions/dishes'
 import styleModule from './Admin.module.css'
 
 import Menu from '../../components/Menu'
@@ -16,7 +13,7 @@ const styles = classNames.bind(styleModule)
 
 class Admin extends Component {
   componentDidMount () {
-    this.props.getAllDishes()
+    // this.props.getAllDishes()
   }
 
   render () {
@@ -43,16 +40,4 @@ class Admin extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    sectionName: state.ui.sectionName
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getAllDishes: bindActionCreators(getDishes, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Admin)
+export default Admin

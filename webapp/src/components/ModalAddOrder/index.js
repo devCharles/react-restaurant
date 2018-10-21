@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { connect } from 'react-redux'
 
 import Modal from '../Modal'
 
@@ -141,10 +140,4 @@ class ModalTakeTable extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    dishes: state.dishes.list
-  }
-}
-
-export default connect(mapStateToProps)(ModalTakeTable)
+export default ModalTakeTable

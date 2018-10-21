@@ -1,10 +1,5 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-
-import { getTables, createTable, addCustomers } from '../../redux/actions/table'
-import uiActions from '../../redux/actions/ui'
 
 import Table from '../Table'
 
@@ -22,8 +17,8 @@ class TableList extends Component {
   }
 
   componentDidMount () {
-    this.props.getTables()
-    this.props.setSectionName('Mesas')
+    // this.props.getTables()
+    // this.props.setSectionName('Mesas')
   }
 
   onSelectTable (tableName) {
@@ -41,7 +36,7 @@ class TableList extends Component {
   }
 
   render () {
-    const { tables, createTable, getTables, addCustomers: customersAdder } = this.props
+    const { tables = [], createTable, getTables, addCustomers: customersAdder } = this.props
     return (
       <section className={styles('tables-container')}>
         <div className={styles('columns', 'is-multiline', 'tables-columns')}>
@@ -65,19 +60,4 @@ class TableList extends Component {
   }
 }
 
-function mapStateToProps (state) {
-  return {
-    tables: state.table.existing
-  }
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    getTables: bindActionCreators(getTables, dispatch),
-    setSectionName: bindActionCreators(uiActions.setSectionName, dispatch),
-    createTable: bindActionCreators(createTable, dispatch),
-    addCustomers: bindActionCreators(addCustomers, dispatch)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(TableList)
+export default TableList
