@@ -5,9 +5,7 @@ const Order = require('../../models/order').model
 const utils = require('../../lib/utils/index')
 
 const orderFields = [
-  'tableId',
-  'dishes',
-  'description'
+  'dishes'
 ]
 
 module.exports = router => {

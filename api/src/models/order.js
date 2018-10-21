@@ -1,19 +1,12 @@
 
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-const { schema: tableSchema } = require('./table')
+const { schema: dishSchema } = require('./dish')
 
 const orderSchema = new Schema({
-  tableId: {
-    type: Schema.Types.ObjectId,
+  dishes: {
+    type: [dishSchema],
     required: true
-  },
-  dishes: [tableSchema],
-  description: {
-    type: String,
-    trim: true,
-    required: true,
-    default: ''
   }
 })
 

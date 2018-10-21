@@ -1,3 +1,5 @@
+
+const fs = require('fs')
 const Koa = require('koa')
 const cors = require('kcors')
 const Router = require('koa-router')
@@ -12,12 +14,14 @@ const router = new Router()
 const environment = process.env.NODE_ENV || 'development'
 
 router.get('/', async (ctx, next) => {
-  ctx.body = '- REACT RESTAURANT API -'
+  ctx.type = 'html'
+  const apiDocsHtmlPath = `${__dirname}/api.html`.replace('/src', '/docs')
+  ctx.body = fs.createReadStream(apiDocsHtmlPath)
+  return next()
 })
 
 require('./routes/orders')(router)
 require('./routes/dishes')(router)
-require('./routes/tables')(router)
 
 if (environment === 'production') {
   console.log('Initializing helmet...')
