@@ -9,9 +9,38 @@ class ModalTakeTable extends Component {
     super(props)
     this.state = {
       choosenDishes: [],
+      avialableDishes: [],
       items: 1,
       dishId: 0,
-      dishQuantity: 0
+      dishQuantity: 1
+    }
+  }
+
+  componentDidMount () {
+    const { dishes } = this.props
+    const [ firstDish ] = dishes
+    const { _id: dishId = 0 } = firstDish
+
+    this.setState({ dishId })
+    this.updateAvialableDishes()
+  }
+
+  componentDidUpdate () {
+    this.updateAvialableDishes()
+  }
+
+  updateAvialableDishes () {
+    const { choosenDishes, avialableDishes } = this.state
+    const { dishes } = this.props
+
+    if (avialableDishes.length !== choosenDishes.length) {
+      const choosenDishesIds = choosenDishes.map(dish => dish.id)
+      // FIX THIS
+      const newAvialableDishes = dishes.filter(dish => {
+        return !choosenDishes.find(choosenDish => dish._id === choosenDish._id)
+      })
+
+      this.setState({ avialableDishes: newAvialableDishes })
     }
   }
 
@@ -29,8 +58,7 @@ class ModalTakeTable extends Component {
     const newChoosenDishes = [ ...choosenDishes, newDish ]
     this.setState({
       choosenDishes: newChoosenDishes,
-      dishId: null,
-      dishQuantity: 0
+      dishQuantity: 1
     })
   }
 
@@ -41,7 +69,7 @@ class ModalTakeTable extends Component {
 
   render () {
     const { table, dishes = [], onClose = () => null } = this.props
-    let { choosenDishes } = this.state
+    const { choosenDishes, avialableDishes } = this.state
     return (
       <Modal
         title={table.name}
@@ -51,22 +79,15 @@ class ModalTakeTable extends Component {
           <div className='column is-full'>
             <h1> Nueva orden </h1>
           </div>
-          {
-            choosenDishes.map((dish, index) =>
-              <div key={index} className='column is-full'>
-                {`(${dish.quantity}) - ${dish.name}`}
-              </div>
-            )
-          }
-
           <div className='column is-two-quarters'>
             <div className='select is-fullwidth'>
               <select
                 className='full-width'
                 onChange={({ target }) => this.setState({ dishId: target.value })}
+                onClick={({ target }) => this.setState({ dishId: target.value })}
               >
-                { dishes.map(dish =>
-                  <option value={dish._id} key={dish._id}>
+                { avialableDishes.map((dish, index) =>
+                  <option value={dish._id} key={dish._id} >
                     { dish.name }
                   </option>
                 )}
@@ -78,6 +99,9 @@ class ModalTakeTable extends Component {
               type='number'
               className='input'
               placeholder='#'
+              min='1'
+              max='1000'
+              value={this.state.dishQuantity}
               onChange={({ target }) => this.setState({ dishQuantity: target.value })}
             />
           </div>
@@ -89,6 +113,18 @@ class ModalTakeTable extends Component {
               <FontAwesomeIcon icon={['fas', 'plus-circle']} />
             </button>
           </div>
+          { choosenDishes.map((dish, index) =>
+            <div key={index} className='column is-full'>
+              <div className='columns'>
+                <div className='column is-half'>
+                  {dish.name}
+                </div>
+                <div className='column is-half'>
+                  {`x ${dish.quantity}`}
+                </div>
+              </div>
+            </div>
+          )}
           <div className='column is-full'>
             <button
               className='button'
