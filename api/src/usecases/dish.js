@@ -5,6 +5,10 @@ async function getAll () {
   return Dish.find({}).exec()
 }
 
+async function getById (dishId) {
+  return Dish.findById(dishId).exec()
+}
+
 async function create (dishData) {
   const newDish = new Dish(dishData)
   const error = newDish.validateSync()
@@ -24,9 +28,19 @@ async function update (dishId, dishData) {
   // @TODO: implement update dish functionality
 }
 
+async function getSchemasByIds (dishIds = []) {
+  if (!Array.isArray(dishIds)) throw new Error('dishIds has to be an Array')
+  dishIds = dishIds.filter(dishId => dishId != null)
+
+  const schemaPromises = dishIds.map(dishId => Dish.findById(dishId))
+  return Promise.all(schemaPromises)
+}
+
 module.exports = {
   getAll,
+  getById,
   create,
   del,
-  update
+  update,
+  getSchemasByIds
 }
