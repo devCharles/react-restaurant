@@ -1,7 +1,7 @@
 
 const get = require('lodash/get')
 
-const Order = require('../../models/order').model
+const order = require('../../usecases/order')
 const utils = require('../../lib/utils/index')
 
 const orderFields = [
@@ -10,20 +10,32 @@ const orderFields = [
 
 module.exports = router => {
   router.get('/orders', async ctx => {
-    const data = await Order.find({}).exec()
-    return ctx.resolve({ payload: { order: data } })
+    const allOrders = await order.getAll()
+
+    return ctx.resolve({ payload: { orders: allOrders } })
   })
 
   router.post('/orders', async ctx => {
     const requestData = get(ctx, 'request.body', {})
     const newOrderData = utils.removeExtraData(requestData, orderFields)
-    const newOrder = new Order(newOrderData)
+    const newOrder = await order.create(newOrderData)
 
-    const error = newOrder.validateSync()
-    if (error) throw ctx.throw(400, error.message)
+    return ctx.resolve({ payload: { order: newOrder } })
+  })
 
-    const orderCreated = await newOrder.save()
+  router.patch('/order/:orderId/dish/:dishId', async ctx => {
+    const { orderId, dishId } = get(ctx, 'params', {})
+    const successMessage = `Dish added to order ${orderId}`
 
-    return ctx.resolve({ payload: { order: orderCreated } })
+    const orderUpdated = await order.addDish(orderId, dishId)
+    return ctx.resolve({ payload: { order: orderUpdated }, message: successMessage })
+  })
+
+  router.del('/order/:orderId/dish/:dishId', async ctx => {
+    const { orderId, dishId } = get(ctx, 'params', {})
+    const successMessage = `Dish removed from order ${orderId}`
+
+    const orderUpdated = await order.deleteOneDishById(orderId, dishId)
+    return ctx.resolve({ payload: { order: orderUpdated }, message: successMessage })
   })
 }

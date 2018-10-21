@@ -14,6 +14,7 @@ const dishFields = [
 module.exports = router => {
   router.get('/dishes', async ctx => {
     const allDishes = await dish.getAll()
+
     return ctx.resolve({ payload: { dishes: allDishes } })
   })
 
