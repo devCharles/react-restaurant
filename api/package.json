@@ -4,8 +4,8 @@
   "description": "react restaurant api",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "create-docs": "raml2html docs/api.raml > docs/api.html"
+    "dev": " npm run docs && nodemon index.js",
+    "docs": "raml2html docs/api.raml > docs/api.html"
   },
   "keywords": [
     "api",
