@@ -41,6 +41,7 @@ class OrderDetailModal extends Component {
       }, {})
       this.setState({
         dishesObject,
+        avialableDishes: dishes,
         dishSelected: get(dishes, '0._id', 'NONE')
       })
     }
@@ -61,7 +62,6 @@ class OrderDetailModal extends Component {
     const { onUpdate, orderId } = this.props
     orderService.removeDish(orderId, dishId)
       .then(() => {
-        console.warn('delete')
         onUpdate()
       })
   }
@@ -100,6 +100,16 @@ class OrderDetailModal extends Component {
       dishesChoosen: dishes,
       dishSelected: get(avialableDishes, '0._id', 'NONE')
     })
+  }
+
+  addDishToOrder () {
+    const { dishSelected } = this.state
+    const { orderId, onUpdate } = this.props
+    if (!dishSelected) return null
+    orderService.addDish(orderId, dishSelected)
+      .then(() => {
+        onUpdate()
+      })
   }
 
   handleOnChangeDishSelect ({ target }) {
@@ -202,7 +212,7 @@ class OrderDetailModal extends Component {
                   >
                     {selectDishOptions.map(option =>
                       <option value={option.value} >
-                        {option.label}dishSelected
+                        {option.label}
                       </option>
                     )}
                   </select>
@@ -211,7 +221,7 @@ class OrderDetailModal extends Component {
                   <FontAwesomeIcon
                     icon={['fas', 'sign-in-alt']}
                     size='lg'
-                    onClick={this.addDish.bind(this)}
+                    onClick={this.addDishToOrder.bind(this)}
                   />
                 </div>
               </div>
