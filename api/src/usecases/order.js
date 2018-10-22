@@ -8,9 +8,9 @@ async function getAll () {
 }
 
 async function create (orderData) {
-  const { dishes: dishIds } = orderData
+  const { dishes: dishIds, name } = orderData
   const dishes = await dish.getSchemasByIds(dishIds)
-  const newOrderData = { dishes }
+  const newOrderData = { name, dishes }
 
   const newOrder = new Order(newOrderData)
 
