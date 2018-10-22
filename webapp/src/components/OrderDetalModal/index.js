@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { get } from 'lodash'
 
 import Modal from '../Modal'
 
@@ -14,13 +15,14 @@ class OrderDetailModal extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      AllDishes: [],
+      allDishes: [],
       dishesLoading: true,
       addDishEnabled: false,
       dishSelected: null,
       avialableDishes: [],
-      dishesAsObject: {},
-      dishCount: {}
+      dishesObject: {},
+      dishCounter: {},
+      dishesChoosen: []
     }
   }
 
@@ -28,10 +30,26 @@ class OrderDetailModal extends Component {
     this.getDishes()
   }
 
+  componentDidUpdate (prevProps, prevState) {
+    const { allDishes: dishes } = this.state
+    if (prevState.allDishes.length <= 0 && dishes.length >= 1) {
+      const dishesObject = dishes.reduce((obj, dish) => {
+        return {
+          ...obj,
+          [dish._id]: dish
+        }
+      }, {})
+      this.setState({
+        dishesObject,
+        dishSelected: get(dishes, '0._id', 'NONE')
+      })
+    }
+  }
+
   getDishes () {
     dishesService.getAll()
       .then(dishes => {
-        this.setState({ AllDishes: dishes, dishesLoading: false })
+        this.setState({ allDishes: dishes, dishesLoading: false })
       })
       .catch(error => {
         console.error('ERROR GET DISHES', error)
@@ -48,8 +66,48 @@ class OrderDetailModal extends Component {
       })
   }
 
-  addDish (dishId) {
+  addDish () {
+    const {
+      dishCounter,
+      dishSelected,
+      dishesChoosen,
+      avialableDishes
+    } = this.state
+    const isAtLeastTwoTimesAdded = dishesChoosen.filter(dishId => dishId === dishSelected).length >= 2
 
+    if (dishCounter[dishSelected] >= 2) {
+      const newAvialableDishes = avialableDishes.filter(dish => dish._id !== dishSelected)
+
+      return this.setState({
+        dishCounter: {
+          ...dishCounter,
+          [dishSelected]: dishCounter[dishSelected] > 2
+            ? 2
+            : dishCounter[dishSelected] || 1
+        },
+        avialableDishes: newAvialableDishes
+      })
+    }
+    const dishes = isAtLeastTwoTimesAdded
+      ? dishesChoosen
+      : [ ...dishesChoosen, dishSelected ]
+
+    return this.setState({
+      dishCounter: {
+        ...dishCounter,
+        [dishSelected]: ++dishCounter[dishSelected] || 1
+      },
+      dishesChoosen: dishes,
+      dishSelected: get(avialableDishes, '0._id', 'NONE')
+    })
+  }
+
+  handleOnChangeDishSelect ({ target }) {
+    this.setState({ dishSelected: target.value })
+  }
+
+  handleOnChangeQuantitySelect ({ target }) {
+    this.setState({ dishQuantitySelected: target.value })
   }
 
   render () {

@@ -133,7 +133,8 @@ class AddOrderModal extends Component {
       dishCounter,
       dishesObject,
       avialableDishes,
-      dishSelected
+      dishSelected,
+      dishesChoosen
     } = this.state
     const { onClose } = this.props
 
@@ -229,6 +230,7 @@ class AddOrderModal extends Component {
                   className={styles('button', 'is-fullwidth', 'is-pulled-right', 'create-btn')}
                   type='submit'
                   onClick={this.createOrder.bind(this)}
+                  disabled={dishesChoosen.length <= 0}
                 >
                   Crear
                 </button>

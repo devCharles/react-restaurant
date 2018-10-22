@@ -18,3 +18,7 @@
   color: var(--accent);
   border: solid 1px var(--accent)
 }
+
+.create-btn:hover {
+  color: var(--accent)
+}

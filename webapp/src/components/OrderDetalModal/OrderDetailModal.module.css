@@ -18,3 +18,14 @@
   color: var(--accent);
   cursor: pointer;
 }
+
+.submit {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit:hover {
+  cursor: pointer;
+}
