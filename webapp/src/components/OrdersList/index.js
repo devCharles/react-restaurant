@@ -29,9 +29,13 @@ class OrderList extends Component {
   }
 
   getOrders () {
+    console.warn('GET ORDERS')
+    this.setState({ ordersLoading: true })
     orderService.getAll()
       .then(orders => {
-        this.setState({ orders, ordersLoading: false })
+        console.warn('DONE ORDERS')
+        this.setState({ orders: orders, ordersLoading: false })
+        this.forceUpdate(console.warn('forced'))
       })
       .catch(error => {
         console.error('ERROR GET ORDERS', error)
@@ -81,7 +85,7 @@ class OrderList extends Component {
           <article className='column is-three-fifths'>
             { ordersLoading && <section className='is-loading is-overlay' > x </section> }
             {!ordersLoading && orders.map((order, index) =>
-              <Order order={order} index={++index} key={order._id} />
+              <Order order={order} index={++index} key={order._id} onUpdate={this.getOrders.bind(this)} />
             )}
           </article>
           <aside className={styles('column', 'is-hidden-mobile', 'is-centered', 'stats')}>

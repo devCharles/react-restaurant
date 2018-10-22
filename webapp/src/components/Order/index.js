@@ -52,7 +52,7 @@ class Order extends Component {
 
   render () {
     const { isSelected, dishes, total, numOfDishes } = this.state
-    const { order, index } = this.props
+    const { order, index, onUpdate } = this.props
     const orderName = order.name || `Ord-${order._id.slice(-3)}`
     // const dishes = this.getUniqueDishes()
 
@@ -86,11 +86,13 @@ class Order extends Component {
         </div>
         {isSelected &&
           <OrderDetailModal
-            onClose={this.handleClick.bind(this)}
+            orderId={`${order._id.toString()}`}
             orderName={orderName}
             dishes={dishes}
             numOfDishes={numOfDishes}
             total={total}
+            onClose={this.handleClick.bind(this)}
+            onUpdate={onUpdate}
           />
         }
       </>

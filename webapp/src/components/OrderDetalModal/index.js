@@ -3,11 +3,22 @@ import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Modal from '../Modal'
+
+import orderService from '../../lib/api/order'
 import styleModule from './OrderDetailModal.module.css'
 
 const styles = classNames.bind(styleModule)
 
-class componentName extends Component {
+class OrderDetailModal extends Component {
+  removeDish (dishId) {
+    const { onUpdate, orderId } = this.props
+    orderService.removeDish(orderId, dishId)
+      .then(() => {
+        console.warn('delete')
+        onUpdate()
+      })
+  }
+
   render () {
     const { orderName, dishes, numOfDishes, total, onClose } = this.props
     return (
@@ -50,6 +61,7 @@ class componentName extends Component {
                         icon={[ 'fas', 'times-circle' ]}
                         size='lg'
                         className={styles('delete')}
+                        onClick={this.removeDish.bind(this, dish._id)}
                       />
                     </span>
                   </div>
@@ -86,4 +98,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName
+export default OrderDetailModal

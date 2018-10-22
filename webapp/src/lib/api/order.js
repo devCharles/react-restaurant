@@ -33,8 +33,17 @@ const addDish = async (orderId, dishId) => {
   return false
 }
 
+const removeDish = async (orderId, dishId) => {
+  const response = await apiFetch(`/order/${orderId}/dish/${dishId}`, {
+    method: 'DELETE'
+  })
+  if (response.ok) return true
+  return false
+}
+
 export default {
   getAll,
   create,
-  addDish
+  addDish,
+  removeDish
 }
