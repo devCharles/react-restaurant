@@ -21,7 +21,7 @@ const create = async (name = 'Orden', dishes = []) => {
       dishes
     })
   })
-  if (response.ok) return true
+  if (response.ok) return response.json()
   throw new Error('Order already exists')
 }
 

@@ -12,7 +12,7 @@ class Modal extends Component {
     return (
       <div className={styles('overlay')}>
         <div className='columns is-centered'>
-          <div className='column is-one-third is-half-desktop'>
+          <div className='column is-half'>
             <div className={styles('box', 'modal')}>
               <header>
                 <div className='columns is-centered is-mobile'>

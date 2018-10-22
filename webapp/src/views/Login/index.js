@@ -27,7 +27,6 @@ class Login extends Component {
     const { value, id } = target
     let stateChanges = { [id]: value }
     if (value) stateChanges = { ...stateChanges, showError: false }
-    console.warn('new changes: ', stateChanges)
     this.setState(stateChanges)
   }
 

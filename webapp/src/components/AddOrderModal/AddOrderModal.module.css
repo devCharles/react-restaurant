@@ -1,0 +1,20 @@
+.submit {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.submit:hover {
+  cursor: pointer;
+}
+
+.dish {
+  border-bottom: solid 1px gray;
+}
+
+.create-btn {
+  background-color: var(--secondary);
+  color: var(--accent);
+  border: solid 1px var(--accent)
+}

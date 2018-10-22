@@ -62,10 +62,10 @@ class Order extends Component {
           className={styles('columns', 'is-multiline', 'is-mobile', 'is-fullwidth', 'order', { isSelected })}
           onClick={this.handleClick.bind(this)}
         >
-          <div className='column is-three-quarters-mobile is-size-6-mobile'>
+          <div className='column is-full-mobile is-size-6-mobile has-text-centered-mobile'>
             { `${index}° - ${orderName}` }
           </div>
-          <div className='column has-text-centered is-one-quarter-mobile'>
+          <div className='column has-text-centered is-half-mobile'>
             <span className='icon'>
               <FontAwesomeIcon
                 icon={['fas', 'utensils']}
@@ -74,7 +74,7 @@ class Order extends Component {
             </span>
             <span>{ numOfDishes } </span>
           </div>
-          <div className='column has-text-centered is-one-quarter-mobile'>
+          <div className='column has-text-centered is-half-mobile'>
             <span className='icon'>
               <FontAwesomeIcon icon={['fas', 'dollar-sign']} className={styles('icono')} />
             </span>

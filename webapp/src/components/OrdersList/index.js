@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import Order from '../Order'
 import StatsCounter from '../StatsCounter'
+import AddOrderModal from '../AddOrderModal'
 
 import styleModule from './OrderList.module.css'
 import orderService from '../../lib/api/order'
@@ -11,16 +12,20 @@ import dishesService from '../../lib/api/dishes'
 
 const styles = classNames.bind(styleModule)
 
-class componentName extends Component {
+class OrderList extends Component {
   constructor (props) {
     super(props)
     this.state = {
       orders: [],
-      ordersLoading: true
+      ordersLoading: true,
+      dishes: [],
+      dishesLoading: true,
+      showCreateOrderModal: false
     }
   }
   componentDidMount () {
     this.getOrders()
+    this.getDishes()
   }
 
   getOrders () {
@@ -46,7 +51,7 @@ class componentName extends Component {
   }
 
   render () {
-    const { orders, ordersLoading } = this.state
+    const { orders, ordersLoading, dishes, showCreateOrderModal } = this.state
     return (
       <main className={styles('main')}>
         <header className={styles('columns', 'is-mobile')}>
@@ -54,7 +59,10 @@ class componentName extends Component {
             <h1 className='is-size-5-mobile'>Ordenes</h1>
           </div>
           <div className='column is-half'>
-            <button className={styles('button', 'is-rounded', 'is-pulled-right', 'addBtn')}>
+            <button
+              className={styles('button', 'is-rounded', 'is-pulled-right', 'addBtn')}
+              onClick={() => this.setState({ showCreateOrderModal: true })}
+            >
               <span className='icon'>
                 <FontAwesomeIcon icon={[ 'fas', 'plus' ]} />
               </span>
@@ -62,6 +70,13 @@ class componentName extends Component {
             </button>
           </div>
         </header>
+        {showCreateOrderModal &&
+          <AddOrderModal
+            onClose={() => this.setState({ showCreateOrderModal: false })}
+            onCreate={this.getOrders.bind(this)}
+            dishes={dishes}
+          />
+        }
         <section className='columns'>
           <article className='column is-three-fifths'>
             { ordersLoading && <section className='is-loading is-overlay' > x </section> }
@@ -78,4 +93,4 @@ class componentName extends Component {
   }
 }
 
-export default componentName
+export default OrderList
