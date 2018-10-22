@@ -7,6 +7,7 @@ import Modal from '../Modal'
 
 import orderService from '../../lib/api/order'
 import styleModule from './AddOrderModal.module.css'
+import { counter } from '@fortawesome/fontawesome-svg-core'
 
 const styles = classNames.bind(styleModule)
 
@@ -73,6 +74,34 @@ class AddOrderModal extends Component {
       },
       dishesChoosen: dishes,
       dishSelected: get(avialableDishes, '0._id', 'NONE')
+    })
+  }
+
+  removeDish (dishId) {
+    let {
+      dishCounter,
+      avialableDishes,
+      dishesChoosen,
+      dishesObject
+    } = this.state
+
+    // reset dish counter
+    delete dishCounter[dishId]
+
+    // put it back in avialable dishes
+    const isAlreadyAvialable = avialableDishes.find(dish => dish._id === dishId)
+    const dish = dishesObject[dishId]
+    avialableDishes = isAlreadyAvialable
+      ? avialableDishes
+      : [ ...avialableDishes, dish ]
+
+    // remove from choosen dishes
+    dishesChoosen = dishesChoosen.filter(id => id !== dishId)
+
+    this.setState({
+      dishCounter,
+      avialableDishes,
+      dishesChoosen
     })
   }
 
@@ -158,6 +187,7 @@ class AddOrderModal extends Component {
                         icon={[ 'fas', 'times-circle' ]}
                         size='lg'
                         className={styles('delete')}
+                        onClick={this.removeDish.bind(this, dishId)}
                       />
                     </span>
                   </div>
