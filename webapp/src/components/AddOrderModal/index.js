@@ -7,7 +7,6 @@ import Modal from '../Modal'
 
 import orderService from '../../lib/api/order'
 import styleModule from './AddOrderModal.module.css'
-import { counter } from '@fortawesome/fontawesome-svg-core'
 
 const styles = classNames.bind(styleModule)
 
