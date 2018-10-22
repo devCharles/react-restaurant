@@ -11,10 +11,10 @@ class About extends Component {
     return (
       <div className={styles('cover')}>
         <div className={styles('item')}>
-          <a href='https://github.com/devCharles' target='_blank' >
+          <a href='https://github.com/devCharles/react-restaurant' target='_blank' >
             <FontAwesomeIcon icon={['fab', 'github']} size='5x' />
           </a>
-          <a href='https://github.com/devCharles' target='_blank' >
+          <a href='https://github.com/devCharles/react-restaurant' target='_blank' >
             Github repo
           </a>
         </div>
