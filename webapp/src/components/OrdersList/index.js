@@ -7,6 +7,7 @@ import StatsCounter from '../StatsCounter'
 
 import styleModule from './OrderList.module.css'
 import orderService from '../../lib/api/order'
+import dishesService from '../../lib/api/dishes'
 
 const styles = classNames.bind(styleModule)
 
@@ -29,6 +30,18 @@ class componentName extends Component {
       })
       .catch(error => {
         console.error('ERROR GET ORDERS', error)
+        alert('Por favor recarga la pagina.')
+      })
+  }
+
+  getDishes () {
+    dishesService.getAll()
+      .then(dishes => {
+        this.setState({ dishes, dishesLoading: false })
+      })
+      .catch(error => {
+        console.error('ERROR GET DISHES', error)
+        alert('Por favor recarga la pagina.')
       })
   }
 
