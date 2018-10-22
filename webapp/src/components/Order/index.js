@@ -70,24 +70,19 @@ class Order extends Component {
             <span className='icon'>
               <FontAwesomeIcon
                 icon={['fas', 'utensils']}
-                className={styles('status', { isClosed: order.status === 'open' })}
+                className={styles('icono')}
               />
             </span>
             <span>{ numOfDishes } </span>
           </div>
           <div className='column has-text-centered is-one-quarter-mobile'>
             <span className='icon'>
-              <FontAwesomeIcon
-                icon={['fas', 'dollar-sign']}
-                className={styles('status', { isClosed: order.status === 'open' })}
-              />
+              <FontAwesomeIcon icon={['fas', 'dollar-sign']} className={styles('icono')} />
             </span>
             <span>{ total } </span>
           </div>
           <div className='column has-text-right is-hidden-mobile '>
-            <FontAwesomeIcon
-              icon={['fas', 'ellipsis-h']}
-            />
+            <FontAwesomeIcon icon={['fas', 'ellipsis-h']} className={styles('icono')} />
           </div>
         </div>
         {isSelected &&

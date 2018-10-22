@@ -13,53 +13,6 @@
   border-bottom: solid 1px var(--accent);
 }
 
-.detail-header {
-  border-bottom: solid 1px white;
-}
-
-.detail-footer {
-  border-top: solid 1px white;
-}
-
-.dish {
-  border-bottom: solid 1px gray;
-}
-
-.isSelected {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  border-bottom-color: var(--primary);
-  border-left: solid 1px var(--accent);
-  border-top-color: var(--primary);
-}
-
-.isSelected:hover {
-  transform: scale(1,1);
-  border-bottom-color: var(--primary)
-}
-
-.detail {
-  background-color: var(--secondary);
-  color: white;
-  border-left: solid 1px var(--accent);
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  margin-bottom: 30px;
-}
-
-.isClosed {
-  color: red;
-}
-
-.status {
-  color: green;
-}
-
-.delete {
-  cursor: pointer;
-}
-
-.add {
-  color: var(--accent);
-  cursor: pointer;
+.icono {
+  color: var(--accent)
 }

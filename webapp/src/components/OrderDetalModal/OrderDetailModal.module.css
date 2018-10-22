@@ -1,0 +1,20 @@
+.detail-header {
+  border-bottom: solid 1px white;
+}
+
+.detail-footer {
+  border-top: solid 1px white;
+}
+
+.dish {
+  border-bottom: solid 1px gray;
+}
+
+.delete {
+  cursor: pointer;
+}
+
+.add {
+  color: var(--accent);
+  cursor: pointer;
+}
