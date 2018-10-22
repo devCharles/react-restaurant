@@ -1,14 +1,14 @@
 .order {
   background-color: var(--primary);
   border-radius: 5px;
-  border-top: solid 1px var(--accent);
+  border-top: solid 1px var(--secondary);
   border-bottom: solid 1px var(--primary);
   color: white;
 }
 
 .order:hover {
   cursor: pointer;
-  transform: scale(1.03 ,1);
+  transform: scale(1.015 ,1);
   border-top: solid 1px var(--accent);
   border-bottom: solid 1px var(--accent);
 }

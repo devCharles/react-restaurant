@@ -4,7 +4,6 @@ import { get } from 'lodash'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import Modal from '../Modal'
 import OrderDetailModal from '../OrderDetalModal'
 import styleModule from './Order.module.css'
 
