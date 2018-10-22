@@ -4,6 +4,11 @@ const { Schema } = mongoose
 const { schema: dishSchema } = require('./dish')
 
 const orderSchema = new Schema({
+  name: {
+    type: String,
+    trim: true,
+    default: ''
+  },
   dishes: {
     type: [dishSchema],
     required: true

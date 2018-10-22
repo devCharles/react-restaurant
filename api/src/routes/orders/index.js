@@ -5,6 +5,7 @@ const order = require('../../usecases/order')
 const utils = require('../../lib/utils/index')
 
 const orderFields = [
+  'name',
   'dishes'
 ]
 
