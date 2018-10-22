@@ -1,0 +1,15 @@
+
+.counter-container {
+  border-bottom: solid 1px var(--accent)
+}
+
+.counter {
+  font-weight: bolder;
+  font-size: 3rem;
+  padding: 0;
+}
+
+.counter-title {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}

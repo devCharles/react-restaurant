@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styleModule from './Admin.module.css'
 
 import Menu from '../../components/Menu'
-import TableList from '../../components/TablesList'
+import OrdersList from '../../components/OrdersList'
 
 const styles = classNames.bind(styleModule)
 
@@ -27,10 +27,10 @@ class Admin extends Component {
           </header>
           <main className={styles('main')} >
             <Switch>
-              <Redirect exact from='/restaurant' to='/restaurant/tables' />
-              <Route exact path='/restaurant/tables' component={TableList} />
-              <Route exact path='/restaurant/orders' component={() => (<p> LIST ORDErS! </p>)} />
-              <Route exact path='/restaurant/add-dishes' component={() => (<p> NEW DISH! </p>)} />
+              <Redirect exact from='/restaurant' to='/restaurant/orders' />
+              <Route exact path='/restaurant/orders' component={OrdersList} />
+              <Route exact path='/restaurant/menu' component={() => (<p> LIST ORDErS! </p>)} />
+              <Route exact path='/restaurant/about' component={() => (<p> NEW DISH! </p>)} />
               <Route component={() => (<p> NOT FOUND! </p>)} />
             </Switch>
           </main>

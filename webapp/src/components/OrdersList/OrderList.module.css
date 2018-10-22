@@ -1,0 +1,28 @@
+
+.main {
+  padding: 2rem;
+}
+
+.header {
+  background-color: var(--accent)
+}
+
+header h1 {
+  color: white;
+  font-size: 1.6rem;
+}
+.stats {
+  padding: 0 10rem;
+  color: white;
+}
+
+.addBtn {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary)
+}
+
+.addBtn:hover {
+  border-color: var(--accent);
+  color: white;
+}

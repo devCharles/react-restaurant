@@ -13,3 +13,12 @@
 .close {
   cursor: pointer;
 }
+
+
+.modal {
+  background-color: var(--primary);
+}
+
+.modal, .modal strong, .modal-title {
+  color: white
+}
