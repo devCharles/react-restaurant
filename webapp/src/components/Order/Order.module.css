@@ -13,6 +13,18 @@
   border-bottom: solid 1px var(--accent);
 }
 
+.detail-header {
+  border-bottom: solid 1px white;
+}
+
+.detail-footer {
+  border-top: solid 1px white;
+}
+
+.dish {
+  border-bottom: solid 1px gray;
+}
+
 .isSelected {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;

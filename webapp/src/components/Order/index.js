@@ -14,14 +14,20 @@ class Order extends Component {
     super(props)
     this.state = {
       isSelected: false,
-      dishes: []
+      dishes: [],
+      total: 0,
+      numOfDishes: 0
     }
   }
 
   componentDidMount () {
-    console.warn('ORDER DID MOUNT')
     const dishes = this.getUniqueDishes()
-    this.setState({ dishes })
+    const total = dishes.reduce((total, dish) => {
+      const { count = 0, price = 0 } = dish
+      return (total + (count * price))
+    }, 0)
+    const numOfDishes = dishes.reduce((total, dish) => total + dish.count, 0)
+    this.setState({ dishes, total, numOfDishes })
   }
 
   handleClick () {
@@ -45,9 +51,9 @@ class Order extends Component {
   }
 
   render () {
-    const { isSelected, dishes } = this.state
+    const { isSelected, dishes, total, numOfDishes } = this.state
     const { order, index } = this.props
-    const orderName = order.name || `orden-${order._id.slice(-3)}`
+    const orderName = order.name || `Ord-${order._id.slice(-3)}`
     // const dishes = this.getUniqueDishes()
 
     return (
@@ -56,16 +62,28 @@ class Order extends Component {
           className={styles('columns', 'is-multiline', 'is-mobile', 'is-fullwidth', 'order', { isSelected })}
           onClick={this.handleClick.bind(this)}
         >
-          <div className='column is-three-quarters-mobile is-size-7-mobile'>
+          <div className='column is-three-quarters-mobile is-size-6-mobile'>
             { `${index}° - ${orderName}` }
           </div>
-          <div className='column has-text-right is-one-quarter-mobile'>
-            <FontAwesomeIcon
-              icon={['fas', 'circle']}
-              className={styles('status', { isClosed: order.status === 'open' })}
-            />
+          <div className='column has-text-centered is-one-quarter-mobile'>
+            <span className='icon'>
+              <FontAwesomeIcon
+                icon={['fas', 'utensils']}
+                className={styles('status', { isClosed: order.status === 'open' })}
+              />
+            </span>
+            <span>{ numOfDishes } </span>
           </div>
-          <div className='column has-text-right is-full-mobile'>
+          <div className='column has-text-centered is-one-quarter-mobile'>
+            <span className='icon'>
+              <FontAwesomeIcon
+                icon={['fas', 'dollar-sign']}
+                className={styles('status', { isClosed: order.status === 'open' })}
+              />
+            </span>
+            <span>{ total } </span>
+          </div>
+          <div className='column has-text-right is-hidden-mobile '>
             <FontAwesomeIcon
               icon={['fas', 'ellipsis-h']}
             />
@@ -77,7 +95,7 @@ class Order extends Component {
             title={orderName}
           >
             <div className='columns is-multiline'>
-              <header className='column is-full is-mobile'>
+              <header className={styles('column', 'is-full', 'is-mobile', 'detail-header')}>
                 <div className='columns is-mobile'>
                   <div className='column is-one-third'>
                     <strong>Platillos</strong>
@@ -94,7 +112,7 @@ class Order extends Component {
               { dishes.map(dish => {
                 const { name = '', count = 1, price = 0 } = dish
                 return (
-                  <div className='column is-full' key={name}>
+                  <div className={styles('column', 'is-full', 'dish')} key={name}>
                     <div className='columns is-mobile'>
                       <div className='column is-one-third'>
                         {name}
@@ -118,23 +136,16 @@ class Order extends Component {
                   </div>
                 )
               })}
-              <section className='column is-full'>
+              <section className={styles('column', 'is-full', 'detail-footer')}>
                 <div className='columns is-mobile'>
                   <div className='column is-one-third'>
                     <strong>Total</strong>
                   </div>
                   <div className='column is-one-quarter'>
-                    <strong>
-                      {dishes.reduce((total, dish) => total + dish.count, 0)}
-                    </strong>
+                    <strong> {numOfDishes} </strong>
                   </div>
                   <div className='column has-text-centered'>
-                    <strong>
-                      {dishes.reduce((total, dish) => {
-                        const { count = 0, price = 0 } = dish
-                        return (total + (count * price))
-                      }, 0)}
-                    </strong>
+                    <strong> {total} </strong>
                   </div>
                   <div className='column has-text-right'>
                     <span className='icon'>

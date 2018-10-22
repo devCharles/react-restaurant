@@ -50,8 +50,8 @@ class componentName extends Component {
           </div>
         </header>
         <section className='columns'>
-          <article className='column is-half'>
-            { ordersLoading && <section className='is-loading is-averlay' > x </section> }
+          <article className='column is-three-fifths'>
+            { ordersLoading && <section className='is-loading is-overlay' > x </section> }
             {!ordersLoading && orders.map((order, index) =>
               <Order order={order} index={++index} key={order._id} />
             )}
