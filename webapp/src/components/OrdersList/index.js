@@ -29,17 +29,14 @@ class OrderList extends Component {
   }
 
   getOrders () {
-    console.warn('GET ORDERS')
     this.setState({ ordersLoading: true })
     orderService.getAll()
       .then(orders => {
-        console.warn('DONE ORDERS')
         this.setState({ orders: orders, ordersLoading: false })
-        this.forceUpdate(console.warn('forced'))
       })
       .catch(error => {
         console.error('ERROR GET ORDERS', error)
-        alert('Por favor recarga la pagina.')
+        alert('Por favor recarga la pagina.') // eslint-disable-line
       })
   }
 
@@ -50,7 +47,7 @@ class OrderList extends Component {
       })
       .catch(error => {
         console.error('ERROR GET DISHES', error)
-        alert('Por favor recarga la pagina.')
+        alert('Por favor recarga la pagina.') // eslint-disable-line
       })
   }
 
@@ -84,6 +81,7 @@ class OrderList extends Component {
         <section className='columns'>
           <article className='column is-three-fifths'>
             { ordersLoading && <section className='is-loading is-overlay' > x </section> }
+            { orders.length <= 0 && <p className='has-text-white' > No hay ordenes... Pero puedes crear una ;) </p> }
             {!ordersLoading && orders.map((order, index) =>
               <Order order={order} index={++index} key={order._id} onUpdate={this.getOrders.bind(this)} />
             )}
