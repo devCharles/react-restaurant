@@ -59,8 +59,8 @@ class OrderDetailModal extends Component {
   }
 
   removeDish (dishId) {
-    const { onUpdate, orderId } = this.props
-    orderService.removeDish(orderId, dishId)
+    const { onUpdate, order } = this.props
+    orderService.removeDish(order._id, dishId)
       .then(() => {
         onUpdate()
       })
@@ -104,12 +104,27 @@ class OrderDetailModal extends Component {
 
   addDishToOrder () {
     const { dishSelected } = this.state
-    const { orderId, onUpdate } = this.props
+    const { order, onUpdate } = this.props
     if (!dishSelected) return null
-    orderService.addDish(orderId, dishSelected)
+    orderService.addDish(order._id, dishSelected)
       .then(() => {
         onUpdate()
       })
+  }
+
+  getUniqueDishes () {
+    const dishesCount = this.props.order.dishes.reduce((hashTable, dish) => {
+      const key = dish._id
+      let count = get(hashTable, `count.${key}`, 0)
+      return {
+        count: { ...hashTable.count, [key]: ++count },
+        dishesObject: { ...hashTable.dishesObject, [key]: dish }
+      }
+    }, { count: {}, dishesObject: {} })
+
+    return Object.entries(dishesCount.dishesObject).map(([id, dish]) => {
+      return { ...dish, count: dishesCount.count[id] }
+    })
   }
 
   handleOnChangeDishSelect ({ target }) {
@@ -121,11 +136,14 @@ class OrderDetailModal extends Component {
   }
 
   render () {
-    const { orderName, dishes, numOfDishes, total, onClose } = this.props
+    const { onClose, order } = this.props
     const { addDishEnabled, dishSelected, avialableDishes } = this.state
+    let { dishes, name: orderName } = order
     const selectDishOptions = avialableDishes.map(dish => {
       return { value: dish._id, label: dish.name }
     })
+
+    dishes = this.getUniqueDishes()
 
     return (
       <Modal
@@ -181,10 +199,15 @@ class OrderDetailModal extends Component {
                 <strong>Total</strong>
               </div>
               <div className='column is-one-quarter'>
-                <strong> {numOfDishes} </strong>
+                <strong> {order.dishes.length} </strong>
               </div>
               <div className='column has-text-centered'>
-                <strong> {total} </strong>
+                <strong>
+                  {dishes.reduce((total, dish) => {
+                    const { count = 0, price = 0 } = dish
+                    return (total + (count * price))
+                  }, 0)}
+                </strong>
               </div>
               <div className='column has-text-right'>
                 <span className='icon'>
@@ -211,7 +234,7 @@ class OrderDetailModal extends Component {
                     value={dishSelected}
                   >
                     {selectDishOptions.map(option =>
-                      <option value={option.value} >
+                      <option key={option.label} value={option.value} >
                         {option.label}
                       </option>
                     )}

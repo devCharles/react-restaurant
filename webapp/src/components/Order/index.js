@@ -4,7 +4,6 @@ import { get } from 'lodash'
 import classNames from 'classnames/bind'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import OrderDetailModal from '../OrderDetalModal'
 import styleModule from './Order.module.css'
 
 const styles = classNames.bind(styleModule)
@@ -51,8 +50,8 @@ class Order extends Component {
   }
 
   render () {
-    const { isSelected, dishes, total, numOfDishes } = this.state
-    const { order, index, onUpdate } = this.props
+    const { isSelected, total, numOfDishes } = this.state
+    const { order, index, onClick } = this.props
     const orderName = order.name || `Ord-${order._id.slice(-3)}`
     // const dishes = this.getUniqueDishes()
 
@@ -60,7 +59,7 @@ class Order extends Component {
       <>
         <div
           className={styles('columns', 'is-multiline', 'is-mobile', 'is-fullwidth', 'order', { isSelected })}
-          onClick={this.handleClick.bind(this)}
+          onClick={onClick}
         >
           <div className='column is-full-mobile is-size-6-mobile has-text-centered-mobile'>
             { `${index}° - ${orderName}` }
@@ -84,17 +83,6 @@ class Order extends Component {
             <FontAwesomeIcon icon={['fas', 'ellipsis-h']} className={styles('icono')} />
           </div>
         </div>
-        {isSelected &&
-          <OrderDetailModal
-            orderId={`${order._id.toString()}`}
-            orderName={orderName}
-            dishes={dishes}
-            numOfDishes={numOfDishes}
-            total={total}
-            onClose={this.handleClick.bind(this)}
-            onUpdate={onUpdate}
-          />
-        }
       </>
     )
   }

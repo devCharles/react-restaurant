@@ -171,7 +171,7 @@ class AddOrderModal extends Component {
             {Object.entries(dishCounter).map(([dishId, timesChoosen]) => {
               const dish = dishesObject[dishId]
               return (
-                <div className={styles('columns', 'is-mobile', 'dish')}>
+                <div key={dishId} className={styles('columns', 'is-mobile', 'dish')}>
                   <div className='column'>
                     { dish.name }
                   </div>
@@ -207,7 +207,7 @@ class AddOrderModal extends Component {
                     value={dishSelected}
                   >
                     {selectDishOptions.map(option =>
-                      <option value={option.value} >
+                      <option key={option.label} value={option.value} >
                         {option.label}
                       </option>
                     )}
