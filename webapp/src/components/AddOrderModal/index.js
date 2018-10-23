@@ -10,8 +10,6 @@ import styleModule from './AddOrderModal.module.css'
 
 const styles = classNames.bind(styleModule)
 
-// react-select
-
 class AddOrderModal extends Component {
   constructor (props) {
     super(props)

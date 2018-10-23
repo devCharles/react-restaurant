@@ -13,10 +13,6 @@ import About from '../../components/About'
 const styles = classNames.bind(styleModule)
 
 class Admin extends Component {
-  componentDidMount () {
-    // this.props.getAllDishes()
-  }
-
   render () {
     return (
       <div className={styles('layout')}>

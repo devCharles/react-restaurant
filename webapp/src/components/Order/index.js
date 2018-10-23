@@ -29,11 +29,6 @@ class Order extends Component {
     this.setState({ dishes, total, numOfDishes })
   }
 
-  handleClick () {
-    const { isSelected } = this.state
-    this.setState({ isSelected: !isSelected })
-  }
-
   getUniqueDishes () {
     const dishesCount = this.props.order.dishes.reduce((hashTable, dish) => {
       const key = dish._id
@@ -53,7 +48,6 @@ class Order extends Component {
     const { isSelected, total, numOfDishes } = this.state
     const { order, index, onClick } = this.props
     const orderName = order.name || `Ord-${order._id.slice(-3)}`
-    // const dishes = this.getUniqueDishes()
 
     return (
       <>
